@@ -1,0 +1,220 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>品诗赏景</title>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript" src="../dist/js/jquery.js"></script>
+
+<script type="text/javascript" src="../dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../hill/masonry-master/dist/masonry.pkgd.js"></script>
+
+<script src="./masonry-docs/js/masonry-docs.min.js"></script>
+<link rel="stylesheet" id="roots_css-css" href="../dist/css/bootstrap.css" type="text/css" media="all">
+<link rel="stylesheet" href="./masonry-docs/css/masonry-docs.css?v=1.0" media="screen">
+<style type="text/css">
+.body{
+	font-family:"Microsoft JhengHei";
+}
+.post{
+	position:relative;
+	margin-bottom:30px;
+	padding-bottom:40px;
+	background-color:#ffffff;
+	box-shadow:0 1px 2px 0 rgba(0,0,0,0.1);
+}
+.post-featured-image{
+	position:relative;
+	padding-top:80%;
+	overflow:hidden;
+}
+.post-featured-image .thumbnail{
+	margin-bottom:0;
+	padding:12px;
+	border-top-right-radius:0;
+	border-top-left-radius:0;
+	border-bottom-right-radius:0;
+	border-bottom-left-radius:0;
+	border:none;
+	position:absolute;
+	width:100%;
+	top:0;
+	left:0;
+}
+.size{
+	font-size:24px;
+}
+.btn{
+	background-color:#AD1111;
+	border-color:#AD1111;
+	color:#ffffff;
+	border-radius:0px;
+	margin-right:15px;
+}
+.btn:hover{
+	background-color:#e5e5e5;
+	border-color:#e5e5e5;
+	color:#AD1111;
+	border-radius:0px;
+}
+.head{
+	font-size:15px; 
+	border:1px solid;
+	border-left-width:8px;
+}
+.p-l-r{
+	padding-left:15px;padding-right:15px;
+}
+h3,h4{
+	font-family:"Microsoft JhengHei";
+}
+.item{
+	margin-bottom:5px;
+	margin-right:10px;
+}
+
+</style>
+</head>
+<body style='font-family:Microsoft JhengHei; background-image:url("./hill.jpg");background-size:cover;'>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	     <div class="container">
+	        <div class="navbar-header">
+	          <a class="navbar-brand hidden-sm" href="../index.html">品诗赏景</a>
+	        </div>
+	      </div>
+	</div>
+
+<!-- ************** -->
+
+	<div ng-app="myApp" ng-controller="myCtrl" class="container" style="padding-top:5%">
+		<div class="row">	
+			<!--<div  id="verse" class="col-md-12">
+
+			</div>-->
+			<p ng-bind-html="verse"></p>
+
+		</div>
+		<div class="col-md-12" style="padding-top:20px;">
+			<div style="margin-bottom:8px;"><span class="head"><span class="p-l-r">分类</span></span>
+
+			</div>
+	
+				<!--
+				<span style="margin-right:32px;"></span><a href="#" class="btn">李白</a>&nbsp;<a href="#" class="btn">唐代</a>
+
+				-->
+				<span style="padding-right:32px;"></span>
+				<span ng-repeat="t in tags">
+				<a href="#" class="btn">{{t}}</a>&nbsp;
+				</span>
+		</div>
+		<div class="col-md-12" style="padding-top:20px;">
+			<div style="margin-bottom:8px;"><span class="head"><span class="p-l-r">评析</span></span>
+			</div>
+			<!--<div id="analyses">
+			</div>-->
+			<span style="margin-right:32px;"></span>
+			<span style="line-height:2; color:#6a6a6a;">
+				{{analyses}}
+			</span>
+			
+		</div>
+		<div class="col-md-12" style="padding-top:20px;">
+			<div style="margin-bottom:8px;"><span class="head"><span class="p-l-r">实地考察</span></span></div>
+			<p ng-repeat="p in places" style="color:#6a6a6a;line-height:2;">
+				<span style="margin-right:32px;"></span>
+				{{p}}
+			</p>
+		</div>
+		<div class="col-md-12" style="padding-top:20px;">
+			<div style="margin-bottom:8px;"><span class="head"><span class="p-l-r">良辰美景</span></span>
+			</div>				
+				<div id="pic" class="grid--images" data-js-module="imagesloaded-progress">
+					<div class="grid-sizer"></div>
+					<!--<div id="basic" class="grid- -images" data-js-module="imagesloaded-progress"></div>-->
+					<!--<div ng-repeat="p in pics" class="grid-image-item col-md-3" style="padding-left:0px;padding-top:15px;">
+						<img class="img-thumbnail" src="./hhl/{{p}}">
+			
+					</div>-->
+		
+					
+				</div>
+		</div>
+	</div>
+
+<!-- ************** -->
+<footer style="padding-top:10px;padding-bottom:10px;background-color:white;margin-top:20px;">
+<div class="container" >COPYRIGHT (C) 2016     243504330@qq.com所有</span></div>
+</footer>
+<script>
+ 	var url = window.location.search;
+ 	console.log(url);
+ 	var where = url.substring(7);
+	var app = angular.module('myApp',[]);
+	app.controller('myCtrl',function($scope,$http,$sce){
+
+		$http.get("../server.php/hillwater_get?where="+where)
+		 .success(function (response) {
+		 	console.log(response)
+		 	if(response.status === 0){
+		 		$scope.verse = $sce.trustAsHtml(response.data.verse)
+			 	$scope.tag = response.data.tag
+			 	$scope.analyses = response.data.analyses
+			 	$scope.place = response.data.place
+			 	$scope.picture = response.data.picture
+			 	var arrs = $scope.picture
+			 	var array = arrs.split(",")
+			 	var tags = $scope.tag.split(",")
+			 	$scope.tags = tags
+			 	var places = $scope.place.split("&")
+			 	$scope.places = places
+			 	var pics = $scope.picture.split(",")
+				$scope.pics = pics
+				//console.log(array)
+				//$scope.picss = $sce.trustAsHtml('<div ng-repeat="p in pics" class="grid-image-item" style="padding-left:0px;padding-top:15px;"><img class="img-thumbnail" src="./hhl/'+array+'"></div>')
+			 	//var tags = new Array()
+			 	/*for (i=0;i<tag.length;i++){
+			 		tags[0].push(tag[i])
+			 	}
+			 	console.log(tags)
+			 	alert(tags)
+			 	$scope.tags = tag	 
+			 	/*var res = [];
+			 	for (var i = 0;i<array.length;i++){
+			 		res[i]={
+			 			id:i,
+			 			name:array[i]
+			 		}
+			 	}
+			 	$scope.pic = res
+			 	console.log(res)*/
+			 	$.each(array,function(){
+			 		$("#pic").append('<div ng-repeat="x in pic" class="grid-image-item col-md-3" style="padding-left:0px;padding-top:15px;"><img class="img-thumbnail" src="./admin/picture_in/'+ response.data.picture_in +'/'+this+'"></div>')
+			 	})
+			 	//$("#verse").html($scope.verse)
+			 	//$("#tag").html($scope.tag)
+			 	//$("#analyses").html($scope.analyses)
+			 	//$("#place").html($scope.place)
+			 	//$("#picture").html($scope.picture)
+				$("#pic").masonry({
+					// set itemSelector so .grid-sizer is not used in layout
+	 				 // use element for option
+				});				
+		 	}
+		 });
+	});
+</script>
+<script type="text/javascript">
+//$("#button").click(function(){
+	//alert('123')
+	//$('#pic').masonry('reloadItems');
+//})
+setTimeout(function(){
+    $('#pic').masonry({
+  // set itemSelector so .grid-sizer is not used in layout
+  // use element for option
+	});
+},1000);
+</script>
+</body>
+</html>

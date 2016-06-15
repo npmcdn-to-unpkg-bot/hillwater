@@ -1,0 +1,547 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="../dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../dist/css/animate.css" /> 
+    <script src="../dist/js/jquery.js?v=1.0"></script>
+    <script src="http://www.runoob.com/try/bootstrap/twitter-bootstrap-v2/js/bootstrap-modal.js"></script>
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+     <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" /> 
+  <!-- HTML代码片段中请勿添加<body>标签 //--> 
+    <style type="text/css">
+    	body{
+    		padding-top:50px;
+    		font-family:'微软雅黑';
+    	}
+    	.container-fluid{
+    		padding-right:15px;
+    		padding-left:15px;
+    		margin-right:auto;
+    		margin-left:auto;
+    	}
+    	.sidebar{
+    		position:fixed;
+    		top:51px;
+    		bottom:0;
+    		left:0;
+    		z-index:1000;
+    		display:block;
+    		padding:20px;
+    		overflow-x:hidden;
+    		overflow-y:auto;
+    		background-color:#f5f5f5;
+    		border-right:1px solid #eeeeee;
+    	}
+    	.nav-sidebar{
+    		margin-right:-21px;
+    		margin-bottom:20px;
+    		margin-left:-20px;
+    	}
+    	.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus{
+    		color:#ffffff;
+    		background-color:#428bca;
+    	}
+    	.nav-sidebar > li > a {
+    		padding-right:20px;
+    		padding-left:20px;
+    	}
+    	.nav > li > a:hover,
+		.nav > li > a:focus {
+  			text-decoration: none;
+  			background-color: #A6D6FF;
+		}
+		.main{
+			padding-right:40px;
+			padding-left:40px;
+		}
+		.main{
+			padding:20px;
+		}
+		.main .page-header{
+			margin-top:0;
+		}
+		.notification {
+    		width: 360px;
+   		    height: 110px;
+		    z-index: 9000;
+		    position: fixed;
+		    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+		    padding: 20px;
+		    margin: 0.5rem 0 1rem 0;
+		    border-radius: 2px;
+		    background-color: #fff;
+		}
+
+		.notification .dismiss {
+		    top: 10px;
+		    right: 10px;
+		    width: 20px;
+		    height: 20px;
+		    color: #fff;
+		    text-align: center;
+		    line-height: 20px;
+		    overflow: hidden;
+		    position: absolute;
+		    background-color: #B8B8B8;
+		    border-radius: 50%;
+		}
+
+		.notification .illustration {
+		    margin-right: 20px;
+		    float: left;
+		}
+
+		.notification .illustration img {
+		    border-radius: 50%;
+		}
+
+		.notification .text .title {
+		    font-size: 18px;
+		    font-weight: bold;
+		}
+
+    </style>
+  </head>
+<body>
+	<div class='de'>asdsd</div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    	<div class="container-fluid">
+    		<div class='de'>asdsd</div>
+    		<div class="navbar-header">
+    			<a class="navbar-brand" href="#">Project name</a>
+    		</div>
+   		</div>
+    </nav>
+    <div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 col-sm-3 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active">
+						<a href="#">所有数据</a>
+					</li>
+					<li>
+						<a href="#" secret='"+secret+"' data-toggle='modal' data-target='#exampleModal2' value='"+data+"' data-whatever='123'>增加数据</a>
+					</li>
+					<li>
+						<a href="#" id='' >删除测试</a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<h1 class="page-header">DATA HUB</h1>
+				<div class="table-responsive">
+					<table id="table_id" class="display">
+						<thead>
+							<tr>
+								<th>标题1</th>
+								<th>标题2</th>
+								<th>标题3</th>
+								<th>标题4</th>
+								<th>标题5</th>
+								<th>标题6</th>
+							</tr>
+						</thead>
+	
+					</table>
+				</div>
+			</div>
+		</div>
+    </div>
+    <!-- -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+     		<form type="POST" action="" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="control-label">标题:</label>
+            <input type="text" class="form-control" id="title">
+          </div>
+          <div class="form-group">
+            <labelclass="control-label">id:</label>
+            <input type="text" class="form-control" id="id">
+          </div>
+   			<div class="form-group">
+            <labelclass="control-label">TAG:</label>
+            <input type="text" class="form-control" id="tag">
+          </div>
+          <div class="form-group">
+            <label class="control-label">RAR:</label>
+            <input type="text" name="old_rar" class="form-control" value="" id="old_rar">
+            <input type="file" name="rar" class="form-control"  id="rar">
+          </div>
+          <div class="form-group">
+            <labelclass="control-label">href:</label>
+            <input type="text" class="form-control" id="url">
+          </div>
+           <div class="form-group">
+            <label class="control-label">图片:</label>
+            <input type="text" name="old_img" class="form-control" value="" id="old_img">
+            <input type="file" name="img" class="form-control"  id="img">
+          </div>
+     
+          <div class="form-group">
+            <label class="control-label">大概介绍:</label>
+            <textarea class="form-control" id="about"></textarea>
+          </div>
+   		</form>
+   		 
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="save" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+   <!-- -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+     		<form type="POST" action="" enctype="multipart/form-data">
+          <div class="form-group">
+            <label class="control-label">标题:</label>
+            <input type="text" class="form-control" id="title2">
+          </div>
+   		  <div class="form-group">
+            <labelclass="control-label">TAG:</label>
+            <input type="text" class="form-control" id="tag2">
+          </div>
+          <div class="form-group">
+            <label class="control-label">图片:</label>
+            <input type="file" name="pic" class="form-control"  id="pic">
+          </div>
+          <div class="form-group">
+            <label class="control-label">ZIP包:</label>
+            <input type="file" name="zip" class="form-control"  id="zip">
+          </div>
+          <div class="form-group">
+            <label class="control-label">大概介绍:</label>
+            <textarea class="form-control" id="about2"></textarea>
+          </div>
+   		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="close2" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="add" value="bounce" class="btn btn-primary">bounce</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$("ul li").click(function(){
+		$("ul li").removeClass();
+		$(this).addClass("active");
+	});
+</script>
+<script>
+
+table = $("#table_id").dataTable({						
+  	'bPaginate': true,
+    "bDestory": true,
+    "bRetrieve": true,
+    "bFilter":true,
+    "bSort": false,
+    "stateSave":true,
+    "bProcessing": true,
+    "oLanguage": { 
+        "sProcessing": "正在加载中......", 
+        "sLengthMenu": "每页显示 _MENU_ 条记录", 
+        "sZeroRecords": "对不起，查询不到相关数据！", 
+        "sEmptyTable": "表中无数据存在！", 
+        "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录", 
+        "sInfoFiltered": "数据表中共为 _MAX_ 条记录", 
+        "sSearch": "模糊查询：",
+        "oPaginate":  
+    	{ 
+            "sFirst": "首页", 
+            "sPrevious": "上一页", 
+            "sNext": "下一页", 
+            "sLast": "末页" 
+        } 
+    }, //多语言配置
+  	"sAjaxSource":"../server.php/admin_get_all",
+  	"aoColumns":[
+  		{ "data": "title" },
+		{ "data": "id" },
+		{ "data": "title" },
+		{ "data": "title" },
+		{ "data": "title" },
+
+  	],
+  	"aoColumnDefs":[{
+  		"aTargets":[5],
+  		'mData':"id",
+  		"bSortable":false,
+  		'bSearchable':false,
+  		"mRender":function(data,type,full){
+  			
+  			var secret = "secret" + (data+1);
+  			return "<button type='button' id='in' class='btn btn-default' secret='"+secret+"' data-toggle='modal' data-target='#exampleModal' value='"+data+"' data-whatever='123'>编辑</button>&nbsp;<button class='de btn btn-danger' value='"+data+"' id='del' value='bounce'>bounce</button>"
+  			;
+  		}
+  	}],
+
+//  	"lengthMenu":[[2,4,6,-1],[2,4,6,'All']],
+  	"createdRow":function(row,data,index){
+  		/*if(data['id'] > 10){
+  			$('td',row).eq(3).css('font-weight','bold').css('color','red');
+  		}*/
+  	}
+
+
+
+});
+$("#table_id tbody").on('click','#in',function(){
+	var id = $(this).val();
+	var secret = $(this).attr('secret');
+	$.get("../server.php/admin_get_content_detai?id="+id+"&secret="+secret,function(data,status){	
+		if(data.status === 0){
+			console.log(data.data);
+			$("#title").val(data.data.title);
+			$("#about").val(data.data.about);
+			$("#old_rar").val(data.data.file);
+			$("#tag").val(data.data.tag);
+			$("#id").val(data.data.id);
+			$("#old_img").val(data.data.main_img);
+			$("#url").val(data.data.href);
+		}else{
+			alert(data.status);
+		}
+	});
+
+
+});
+$("#save").click(function(){
+	var formData = new FormData();
+	var img = $("#img");
+	var rar = $("#rar");
+	formData.append("rar",rar[0].files[0]);
+	formData.append("img",img[0].files[0]);
+	formData.append("title",$("#title").val());
+	formData.append("about",$("#about").val());
+	formData.append('tag',$("#tag").val());
+	formData.append('id',$("#id").val());
+	formData.append('url',$("#url").val());
+	formData.append('old_img',$("#old_img").val());
+	formData.append('old_rar',$("#old_rar").val());
+
+	console.log(img);
+	$.ajax({
+		url:"../server.php/admin_content_edite",
+		data:formData,
+		type:"POST",
+		contentType: false,
+   		processData: false,
+   		enctype: 'multipart/form-data',
+		success:function(){
+			
+			alert('成功');
+			var table = $("#table_id").DataTable();
+			table.ajax.reload();
+		},
+
+	})
+});
+/*$("#close").click(function(){
+	alert('关闭并且刷新');
+	var table = $("#table_id").DataTable();
+	table.ajax.reload();
+});
+$("#table_id tbody").on('click','tr',function(){
+	$(this).toggleClass('selected');
+	var table = $("#table_id").DataTable();
+	//table.ajax.reload();
+
+});*/
+function check_form(){
+	if($("#title2").val() === ""){
+		return "不能为空";
+	}
+}
+$("#add").click(function(event){
+	if(!check_form()){
+		var position = 1;
+   				Notification.create(
+				// Title
+           		"删除失败",
+           		// Text
+          		check_form(),
+          		// Illustration
+           		"user.jpg",
+           		// Effect
+           		$(event.target).text(),
+       		    	position
+				);
+		return false;
+	}
+
+	var formData = new FormData();
+	var pic = $("#pic");
+	var zip = $("#zip");
+	formData.append("pic",pic[0].files[0]);
+	formData.append("zip",zip[0].files[0]);
+	formData.append("title",$("#title2").val());
+	formData.append("about",$("#about2").val());
+	formData.append('tag',$("#tag2").val());
+	$.ajax({
+		url:"../server.php/admin_content_add",
+		data:formData,
+		type:"POST",
+		contentType: false,
+   		processData: false,
+   		enctype: 'multipart/form-data',
+   		success:function(data){
+   			if(data.status !== 0){
+   				var position = 1;
+   				Notification.create(
+				// Title
+           		"删除失败",
+           		// Text
+          		data.info,
+          		// Illustration
+           		"user.jpg",
+           		// Effect
+           		$(event.target).text(),
+       		    	position
+				);
+   			}else{
+   				var position = 1;
+   				Notification.create(
+				// Title
+           		"删除成功",
+           		// Text
+          		data.info,
+          		// Illustration
+           		"user.jpg",
+           		// Effect
+           		$(event.target).text(),
+       		    	position
+				);
+   			}
+   		}
+	});
+});
+$("#table_id tbody").on('click','.de',function(event){
+	var formData = new FormData();
+	formData.append("id",$(this).val());
+	$.ajax({
+		url:"../server.php/admin_content_del",
+		data:formData,
+		type:"POST",
+		contentType: false,
+   		processData: false,
+   		enctype: 'multipart/form-data',
+   		success:function(data){
+   			if(data.status === 0){
+   				var position = 1;
+   				Notification.create(
+				// Title
+           		"删除成功",
+           		// Text
+          		data.data,
+          		// Illustration
+           		"user.jpg",
+           		// Effect
+           		$(event.target).text(),
+       		    	position
+				);
+				var table = $("#table_id").DataTable();
+				table.ajax.reload();
+   			}else{
+   				var position = 1;
+   				Notification.create(
+				// Title
+           		"删除失败",
+           		// Text
+          		data.data,
+          		// Illustration
+           		"user.jpg",
+           		// Effect
+           		$(event.target).text(),
+       		    	position
+				);
+   			}
+   		}
+	});
+});
+</script>
+<script>
+Notification = window.Notification || {};
+console.log(Notification);
+Notification = function(){
+	'use strict';
+	var number = 0;
+	var incPosition =0;
+
+	var template = function(title,text,image,position){
+		incPosition = number * 120;
+		number = number + 1;
+		var textHtml  = '<div class="text">' + text + '</div>';
+		var titleHtml = (!title ? "" : '<div class="title">' + title + '</div>');
+		var imageHtml = (!image ? ""  : '<div class="illustration"><img src="' + image + '" width="70" height="70" /></div>');
+		var style;
+		switch (parseInt(position, 10)) {
+            case 1:
+                style = "top:" + incPosition + "px; margin-top:20%; margin-left:40%;";
+                break;
+            case 2:
+                style = "top:" + incPosition + "px; margin-top:20%; margin-right:40%;";
+                break;
+            case 3:
+                style = "bottom:" + incPosition + "px; margin-top:20%; margin-right:40%;";
+                break;
+            case 4:
+                style = "bottom:" + incPosition + "px; margin-top:20%; margin-left:40%;";
+                break;
+            default:
+                ;
+        }
+		return {
+            id: number,
+            content: '<div class="notification notification-' + number + ' " style="' + style + '">' +
+                '<div class="dismiss">&#10006;</div>' +
+                imageHtml +
+                '<div class="text">' + titleHtml + textHtml + '</div>' +
+                '</div>'
+        };
+	};
+
+	var hide = function(id){
+		$(document).find('.notification-' + id).remove();
+		number = number -1;
+	};
+
+	var create = function (title,text,image,animation,position,delay){
+		var notification = template(title, text, image, position);
+		$(notification.content).addClass('animated ' + animation).appendTo('body');
+		if(!delay){
+			delay = 2;
+		}
+		setTimeout(function(){
+			hide(notification.id);
+		},1000*delay)
+	}
+	return {
+		create:create
+	};
+}();
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>jQuery</title>
+
+  <link rel="stylesheet" href="sandbox.css" />
+
+</head>
+<body>
+
+  <h1>jQuery</h1>
+
+  <div id="basic" class="container">
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item w2 h2"></div>
+    <div class="item w2"></div>
+    <div class="item h3"></div>
+    <div class="item w3"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+    <div class="item w2 h4"></div>
+    <div class="item w2"></div>
+    <div class="item h5"></div>
+    <div class="item w3"></div>
+    <div class="item"></div>
+    <div class="item h4"></div>
+    <div class="item"></div>
+    <div class="item w2 h5"></div>
+    <div class="item w2"></div>
+    <div class="item h3"></div>
+    <div class="item w3"></div>
+    <div class="item"></div>
+  </div>
+<button id="button" type="button"> button</button>
+<script src="../../../dist/js/jquery.js"></script>
+<script type="text/javascript" src="../dist/masonry.pkgd.js"></script>
+<script>
+$('#basic').masonry({
+  columnWidth: 60
+});
+
+$("#button").click(function(){
+$('#basic').masonry({
+  columnWidth: 160
+});
+});
+
+</script>
+
+</body>
+</html>

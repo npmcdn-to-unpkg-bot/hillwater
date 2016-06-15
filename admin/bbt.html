@@ -1,0 +1,139 @@
+<html>
+<head>
+  <script src="http://libs.useso.com/js/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+
+     <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" /> 
+     <link rel="stylesheet" type="text/css" href="./dist/css/animate.css" /> 
+      <link rel="stylesheet" type="text/css" href="../../dist/css/animate.css" /> 
+        <link rel="stylesheet" type="text/css" href="../../dist/css/animate.css" /> 
+  <!-- HTML代码片段中请勿添加<body>标签 //--> 
+    <style type="text/css">
+    	
+		.notification {
+    		width: 360px;
+   		    height: 110px;
+		    z-index: 9000;
+		    position: fixed;
+		    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+		    padding: 20px;
+		    margin: 0.5rem 0 1rem 0;
+		    border-radius: 2px;
+		    background-color: #fff;
+		}
+
+		.notification .dismiss {
+		    top: 10px;
+		    right: 10px;
+		    width: 20px;
+		    height: 20px;
+		    color: #fff;
+		    text-align: center;
+		    line-height: 20px;
+		    overflow: hidden;
+		    position: absolute;
+		    background-color: #B8B8B8;
+		    border-radius: 50%;
+		}
+
+		.notification .illustration {
+		    margin-right: 20px;
+		    float: left;
+		}
+
+		.notification .illustration img {
+		    border-radius: 50%;
+		}
+
+		.notification .text .title {
+		    font-size: 18px;
+		    font-weight: bold;
+		}
+
+    </style>
+  </head>
+<body>
+	
+
+    			<div  class="de" value="bounce">boun2ce</div>
+    			<div  class="de">bounce</div>
+
+
+<script type="text/javascript">
+$(".de").click(function(event){
+	var position = 1;
+   				Notification.create(
+				// Title
+           		"Notification title",
+           		// Text
+          		'content',
+          		// Illustration
+           		"../../admin/user.jpg",
+           		// Effect
+           		$(event.target).text(),
+       		    	position
+				);
+})
+</script>
+<script type="text/javascript">
+Notification = window.Notification || {};
+console.log(Notification);
+Notification = function(){
+	'use strict';
+	var number = 0;
+	var incPosition =0;
+
+	var template = function(title,text,image,position){
+		incPosition = number * 120;
+		number = number + 1;
+		var textHtml  = '<div class="text">' + text + '</div>';
+		var titleHtml = (!title ? "" : '<div class="title">' + title + '</div>');
+		var imageHtml = (!image ? ""  : '<div class="illustration"><img src="' + image + '" width="70" height="70" /></div>');
+		var style;
+		switch (parseInt(position, 10)) {
+            case 1:
+                style = "top:" + incPosition + "px; margin-left:50%;";
+                break;
+            case 2:
+                style = "top:" + incPosition + "px; margin-right:50%;";
+                break;
+            case 3:
+                style = "bottom:" + incPosition + "px; margin-right:50%;";
+                break;
+            case 4:
+                style = "bottom:" + incPosition + "px; margin-left:50%;";
+                break;
+            default:
+                ;
+        }
+		return {
+            id: number,
+            content: '<div class="notification notification-' + number + ' " style="' + style + '">' +
+                '<div class="dismiss">&#10006;</div>' +
+                imageHtml +
+                '<div class="text">' + titleHtml + textHtml + '</div>' +
+                '</div>'
+        };
+	};
+
+	var hide = function(id){
+		$(document).find('.notification-' + id).remove();
+		number = number -1;
+	};
+
+	var create = function (title,text,image,animation,position,delay){
+		var notification = template(title, text, image, position);
+		$(notification.content).addClass('animated ' + animation).appendTo('body');
+		if(!delay){
+			delay = 2;
+		}
+		setTimeout(function(){
+			hide(notification.id);
+		},1000*delay)
+	}
+	return {
+		create:create
+	};
+}();
+</script>
+</body>
+</html>

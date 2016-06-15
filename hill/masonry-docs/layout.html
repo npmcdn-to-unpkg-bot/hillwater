@@ -1,0 +1,78 @@
+<!doctype html>
+<html class="export">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Cascading grid layout library">
+
+  <title>Masonry &#xB7; Layout</title>
+
+    <link rel="stylesheet" href="css/masonry-docs.css" media="screen">
+    <style>
+    .grid-image-item{
+    	padding-bottom:15px;
+    	padding-right:15px;
+    }
+     .grid-image-item2{
+    	padding-bottom:35px;
+    	padding-right:135px;
+    }
+    </style>
+</head>
+<body class="page--layout" data-page="layout">
+
+
+
+    <div id="basic" class="grid--images" data-js-module="imagesloaded-progress">
+      <div class="grid-sizer"></div>
+      <div class="grid-image-item">
+        <img src="./../ls/ls1.png">
+      </div>
+      <div class="grid-image-item">
+       <img src="./../ls/ls2.png">
+      </div>
+      <div class="grid-image-item">
+        <img src="./../ls/ls3.png">
+      </div>
+      <div class="grid-image-item">
+       <img src="./../ls/ls4.png">
+      </div>
+      <div class="grid-image-item">
+        <img src="./../ls/ls5.png">
+      </div>
+      <div class="grid-image-item">
+        <img src="./../ls/ls6.png">
+      </div>
+    </div>
+
+  </div>
+
+
+<button id='button' type="button">BUTTON</button>
+
+
+  <script src="../../dist/js/jquery.js"></script>
+  <script type="text/javascript" src="./masonry.pkgd.js?V1=1"></script>
+  <script src="js/masonry-docs.min.js"></script>
+<script>
+
+$('#basic').masonry({
+  // set itemSelector so .grid-sizer is not used in layout
+
+  // use element for option
+
+})
+$(function(){
+		$('#basic').masonry({
+  // set itemSelector so .grid-sizer is not used in layout
+
+
+})
+})
+
+
+</script>
+
+</body>
+</html>

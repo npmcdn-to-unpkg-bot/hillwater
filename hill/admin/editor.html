@@ -1,0 +1,429 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+ 
+    <link rel="stylesheet" type="text/css" href="../../dist/css/animate.css" /> 
+    <link rel="stylesheet" type="text/css" href="styles/font-awesome.css?v=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles/simditor.css?v=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/webUpload.css?v=1.18"/>
+    <script src="../../dist/js/jquery.js?v=1.10"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+   
+    <script type="text/javascript" src="./js/module.js"></script>
+	<script type="text/javascript" src="./js/hotkeys.js"></script>
+	<script type="text/javascript" src="./js/simditor.js"></script>
+
+   
+	<!-- HTML代码片段中请勿添加<body>标签 //--> 
+    <style type="text/css">
+    	body{
+    		padding-top:50px;
+    		font-family:'微软雅黑';
+    	}
+    	.container-fluid{
+    		padding-right:15px;
+    		padding-left:15px;
+    		margin-right:auto;
+    		margin-left:auto;
+    	}
+    	.sidebar{
+    		position:fixed;
+    		top:51px;
+    		bottom:0;
+    		left:0;
+    		z-index:1000;
+    		display:block;
+    		padding:20px;
+    		overflow-x:hidden;
+    		overflow-y:auto;
+    		background-color:#f5f5f5;
+    		border-right:1px solid #eeeeee;
+    	}
+    	.nav-sidebar{
+    		margin-right:-21px;
+    		margin-bottom:20px;
+    		margin-left:-20px;
+    	}
+    	.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus{
+    		color:#ffffff;
+    		background-color:#428bca;
+    	}
+    	.nav-sidebar > li > a {
+    		padding-right:20px;
+    		padding-left:20px;
+    	}
+    	.nav > li > a:hover,
+		.nav > li > a:focus {
+  			text-decoration: none;
+  			background-color: #A6D6FF;
+		}
+		.main{
+			padding-right:40px;
+			padding-left:40px;
+		}
+		.main{
+			padding:20px;
+		}
+		.main .page-header{
+			margin-top:0;
+		}
+		.simditor-toolbar{
+			width:auto;
+		}
+		.uploader{
+			position:relative;
+			display:inline-block;
+			overflow:hidden;
+			cursor:default;
+	
+		}
+		.uploader input[type=file]{
+			position:absolute;
+			top:0;
+			right:0;
+			bottom:0;
+			border:0;
+			padding:0;
+			margin:0;
+			height:30px;
+			cursor:pointer;
+			opacity:0;
+		}
+		/*.btn-file input[type=file]{
+			position:absolute;
+			top:0;
+			right:0;
+			min-width:100%;
+			min-height:100%;
+			opacity:0;
+			background:none repeat scroll 0 0 transparent;
+			cursor:inherit;
+			display:block;
+		}*/
+		.btn{
+			margin-left:4px;
+			border-raius:3px;
+			padding:10px 16px;
+		}
+
+		.alert{
+			animation:myfirst 5s;
+			-moz-animation:myfirst 5s;
+			-webkit-animation:myfirst 5s;
+			-o-animation:myfirst 5s;
+		}
+		@keyframes myfirst{
+			0%   {background:red;}
+			25%  {background:yellow;}
+			50%  {background:blue;}
+			100% {background:green;}
+		}
+
+		@-moz-keyframes myfirst /* Firefox */
+		{
+			0%   {background:red;}
+			25%  {background:yellow;}
+			50%  {background:blue;}
+			100% {background:green;}
+		}
+
+		@-webkit-keyframes myfirst /* Safari and Chrome */
+		{
+			0%   {background:red;}
+			25%  {background:yellow;}
+			50%  {background:blue;}
+			100% {background:green;}
+		}
+
+		@-o-keyframes myfirst /* Opera */
+		{
+			0%   {background:red;}
+			25%  {background:yellow;}
+			50%  {background:blue;}
+			100% {background:green;}
+		}
+    </style>
+  </head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+    	<div class="container-fluid">
+    		<div class="navbar-header">
+    			<a class="navbar-brand" href="#">Project name</a>
+    		</div>
+   		</div>
+    </nav>
+    <div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 col-sm-3 sidebar">
+				<ul class="nav nav-sidebar">
+					<li>
+						<a href="#">所有数据</a>
+					</li>
+					<li>
+						<a href="#" secret='"+secret+"' data-toggle='modal' data-target='#exampleModal2' value='"+data+"' data-whatever='123'>增加数据</a>
+					</li>
+					<li>
+						<a href="#" id='' >删除测试</a>
+					</li>
+					<li class="active">
+						<a href="#" id='' >编辑资料</a>
+					</li>
+				</ul>
+			</div>
+			<form enctype="multipart/form-data">
+			<div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-2 main">
+				<div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
+					<input id="id" type="hidden" class="form-control" >
+					<label class="control-label">诗词歌赋:</label>
+					<textarea id="verse" placeholder="" autofocus></textarea>
+					<label class="control-label">标题:</label>
+					<input id="title" type="text" class="form-control" >
+					<label class="control-label">诗人:</label>
+					<input id="author" type="text" class="form-control" >
+					<label  class="control-label">分类:</label>
+	         	    <input id="tag" type="text" class="form-control" >
+	         	    <label class="control-label">评析:</label>
+					<textarea id="analyses" class="form-control" rows="3"></textarea>
+					<label class="control-label">名胜摘选:</label>
+					<textarea id="place" class="form-control" rows="3"></textarea>
+					<label class="control-label">良辰美景:</label><br/>
+					<textarea id="picture_str" rows="3" class="form-control" ></textarea>
+					<input id="created_at" type="hidden" class="form-control" ></input>
+					<!--<div class="uploader btn btn-primary btn-file">
+						 <i class="glyphicon glyphicon-folder-open"></i> &nbsp;选择 … -->
+					<div id="wrapper">
+	       				<div id="container">
+	            		<!--头部，相册选择和格式选择-->
+
+	         			   <div id="uploader">
+	             			    <div class="queueList">
+	                  			    <div id="dndArea" class="placeholder">
+	                      				<div id="filePicker"></div>
+	                       				<p>或将照片拖到这里，单次最多可选300张</p>
+	                    			</div>
+	                			</div>
+	              				<div class="statusBar" style="display:none;">
+	                    			<div class="progress">
+	                       				<span class="text">0%</span>
+	                        			<span class="percentage"></span>
+	                   				</div>
+	                    			<div class="info"></div>
+	                    			<div class="btns">
+	                        			<div id="filePicker2"></div>
+	                        			<div class="uploadBtn">开始上传</div>
+	                    			</div>
+	                			</div>
+	            			</div>
+	        			</div>
+    				</div>
+					<div style="padding-top: 30px;">
+						<div style="float:right;">
+							<button id="refresh" type="button" class="btn btn-primary">刷新表单</button>
+							<button id="editor" type="button" class="btn btn-primary">提交</button>
+	   					</div>
+	   					<div id="message">
+						</div>				
+					</div>
+			</div>
+		</form>
+		</div>
+    </div>
+ 	<script type="text/javascript">
+		(function() {
+		  $(function() {
+		    var $preview, editor, mobileToolbar, toolbar;
+		    Simditor.locale = 'en-US';
+		    toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'hr', '|', 'indent', 'outdent', 'alignment'];
+		    mobileToolbar = ["bold", "underline", "strikethrough", "color", "ul", "ol"];
+
+		    editor = new Simditor({
+		      textarea: $('#verse'),
+		      placeholder: '这里输入文字...',
+		      toolbar: toolbar,
+		      pasteImage: true,
+
+		    });
+		  });
+
+		}).call(this);
+  </script>
+    <script>
+    var url = window.location.search;
+ 	console.log(url);
+ 	var where = url.substring(7);
+     arr = new Array();
+     created_at = $("#created_at").val();
+    $.ajax({
+    	url:"../../server.php/hillwater_get?where="+where,
+    	data:null,
+    	type:"GET",
+   		async: false,
+    	success:function(data){
+    		if(data.status === 0){
+	    		editor = new Simditor({
+			      textarea: $('#verse'),
+			      placeholder: '',
+			      toolbar: toolbar,
+			      pasteImage: true,
+			    });
+	 			//$(".simditor-body").html(data.data.verse);
+	 			$("#id").val(data.data.id);
+	 			$("#tag").val(data.data.tag);
+	 			$("#place").val(data.data.place);
+	 			$("#analyses").val(data.data.analyses);
+	 			$("#picture_str").val(data.data.picture);
+	 			$("#picture_in").html(data.data.picture_in);
+	 			$("#created_at").val(data.data.picture_in);
+	 			$("#title").val(data.data.title);
+	 			$("#author").val(data.data.author);
+	 			pic_in = data.data.picture_in;
+	 			verse = data.data.verse;
+
+    		}
+    	}
+    });
+    setTimeout(function(){
+    	(function() {
+		  $(function() {
+		    var $preview, editor, mobileToolbar, toolbar;
+		    Simditor.locale = 'en-US';
+		    toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough', 'fontScale', 'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link', 'hr', '|', 'indent', 'outdent', 'alignment'];
+		    mobileToolbar = ["bold", "underline", "strikethrough", "color", "ul", "ol"];
+
+		    editor = new Simditor({
+		      textarea: $('#verse'),
+		      placeholder: '',
+		      toolbar: toolbar,
+		      pasteImage: true,
+
+		    });
+		  });
+
+		}).call(this);
+    $(".simditor-body").html(verse);
+		},10);
+    $("#refresh").click(function(){
+    	$("#message").empty();
+    	alert('123');
+    	//var data = $("#picture_str").val();
+    	//if(data[0] === ","){
+    	//	console.log(data);
+    	//}else{
+    	//	alert('123');
+    	//}
+    });
+    $("#editor").click(function(){
+		var formData = new FormData();
+		var verse = $("#verse").val();
+		var tag = $("#tag").val();
+		var analyses = $("#analyses").val();
+		var place = $("#place").val();
+		var picture = $("#picture_str").val();
+		var updated_at = new Date().getTime();
+		var id = $("#id").val();
+		var title = $("#title").val();
+		var author = $("#author").val();
+		formData.append('title',title);
+		formData.append('tag',tag);
+		formData.append('analyses',analyses);
+		formData.append('place',place);
+		formData.append('verse',verse);
+		formData.append('picture',picture);
+		formData.append('updated_at',updated_at);
+		formData.append('author',author);
+		formData.append('id',id);
+    	$.ajax({
+    		url:"../../server.php/hillwater_editor",
+    		data:formData,
+    		type:"POST",
+    		dataType:"json",
+    		contentType:false,
+    		processData:false,
+    		enctype:'multipart/form-data',
+    		success:function(data){
+    			alert('123');
+    		},
+    		error:function(data,XMLHttpRequest,textStatus,errorThrown){
+    			alert('虽然修改成功了，但是这里有问题以后要改');
+    		}
+    	});
+    });
+   
+  /*  $("#add").click(function(){
+    	var formData = new FormData();
+    	var verse = $("#verse").val();
+    	var tag = $("#tag").val();
+    	var analyses = $("#analyses").val();
+    	var place = $("#place").val();
+    	var picture = arr;
+    	var picture_in = new Date().getTime();
+    	formData.append('verse',verse);
+    	formData.append('tag',tag);
+    	formData.append('analyses',analyses);
+    	formData.append('place',place);
+    	formData.append('picture',picture);
+    	formData.append('picture_in',picture_in);
+    	$.ajax({
+    		url:"../../server.php/hillwater_add",
+    		data:formData,
+    		type:"POST",
+    		contentType:false,
+    		processData:false,
+    		enctype:'multipart/form-data',
+    		success:function(data){
+    			console.log(data)
+    			if(data.status !== 0){
+    				$("#message").empty();
+    				$("#message").html(
+    					'<div class="alert alert-danger" style="float:left;">'+
+    						'<a href="#" class="close"  data-dismiss="alert">&times;</a>'+
+    						'<strong>警告！</strong>'+data.info+"。"+
+    					'</div>'
+
+    				)
+    			}else{
+    				$("#message").html(
+    					'<div class="alert alert-success" style="float:left;">'+
+    						'<a href="#" class="close"  data-dismiss="alert">&times;</a>'+
+    						'<strong>恭喜!</strong>'+data.info+"。"+
+    					'</div>'
+
+    				)
+    			}
+    			//<div class="alert alert-success" style="float:left;">
+   				//<a href="#" class="close" data-dismiss="alert">&times;</a>
+   				//<strong>警告！</strong>您的网络连接有问题。
+				//</div>	
+    			
+
+    		}
+    	});
+    });
+    
+    	$.ajax({
+    		url:"hillwater_add",
+
+    	});
+    	$("#onme").click(function(){
+    		console.log(arr);
+    		console.log($("#tag").val());
+    	})*/
+    </script>
+    
+   <script type="text/javascript" src="../../dist/js/webuploader.js"></script>
+   <script type="text/javascript" src="../../dist/js/upload.js?v=12232s23"></script>
+	<script type="text/javascript">
+		$("ul li").click(function(){
+			$("ul li").removeClass();
+			$(this).addClass("active");
+	});
+	</script>
+
+</body>
+</html>

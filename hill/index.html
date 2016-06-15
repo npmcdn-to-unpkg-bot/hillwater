@@ -1,0 +1,170 @@
+
+<html>
+<head>
+<meta charset="utf-8">
+<title>品诗赏景</title>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript" src="../dist/js/jquery.js"></script>
+
+<script type="text/javascript" src="../dist/js/jquery.js"></script>
+<script type="text/javascript" src="../dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" id="roots_css-css" href="../dist/css/bootstrap.css" type="text/css" media="all">
+<link rel="stylesheet" href="../dist/css/book.css?v=101" type="text/css" media="all">
+<style type="text/css">
+.body{
+	font-family:"Microsoft JhengHei";
+}
+.post{
+	position:relative;
+	margin-bottom:30px;
+	padding-bottom:40px;
+	background-color:#ffffff;
+	box-shadow:0 1px 2px 0 rgba(0,0,0,0.1);
+}
+.post-title{
+	position:absolute;
+	font-size:24px;
+	z-index:9;
+	bottom:12px;
+	left:0;
+	right:15px;
+	text-align:right;
+	margin:0;
+}
+.post-title a{
+	color:#777777;
+}
+.post-featured-image{
+	position:relative;
+	padding-top:80%;
+	overflow:hidden;
+}
+.post-featured-image .thumbnail{
+	margin-bottom:0;
+	padding:12px;
+	border-top-right-radius:0;
+	border-top-left-radius:0;
+	border-bottom-right-radius:0;
+	border-bottom-left-radius:0;
+	border:none;
+	position:absolute;
+	width:100%;
+	top:0;
+	left:0;
+}
+.title{
+	width:40px;
+	color:#ffffff;
+	margin-top:30px;
+	margin-left:290px;
+	background-color:#B84040;
+}
+.son{
+	width:10px;
+	font-size:18px;
+	margin-left:260px;
+	margin-top:20px;
+}
+.pep{
+	font-weight:900;
+	font-size:18px;
+}
+.fm{
+	padding-left:135px;
+	padding-top:10px;
+	font-family:"Microsoft JhengHei";
+}
+.hardcover_front li:first-child{
+	background-color:#999999;
+}
+h4{
+	border-left:5px solid #C94C4C;
+	padding-left:15px;
+	margin-top:0px;
+	font-weight:900;
+	font-family:"Microsoft JhengHei";
+}
+figcaption{
+	left:140px;
+}
+.align{
+	margin:0;
+}
+</style>
+</head>
+<body style='font-family:"Microsoft JhengHei";background-image:url("./hill.jpg");background-size:cover;'>
+<div class="navbar navbar-inverse navbar-fixed-top">
+     <div class="container">
+        <div class="navbar-header">
+
+          <a class="navbar-brand hidden-sm" href="http://www.bootcss.com" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'navbar-首页'])">品诗赏景</a>
+        </div>
+   
+      </div>
+</div>
+	<div ng-app="myApp" ng-controller="myCtrl" class="container" style="padding-top:5%;">
+		<div class="row" id="post-list">
+			<div ng-repeat="p in arr" class=" col-xs-12 col-md-4">
+				<ul class="align">
+					<li>
+						<figure class='book'>
+							<!-- Front -->
+							<ul class='hardcover_front'>
+								<li class="fm">
+									品诗赏景
+								</li>
+								<li>
+
+								</li>
+							</ul>
+							<!-- Pages -->
+							<ul class='page'>
+								<li>123123</li>
+								<li>
+									<a class="btn" href="./detail.html?where={{p.id}}" target="_blank">我要了解更多</a>
+	
+								</li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+							<!-- Back -->
+
+							<ul class='hardcover_back'>
+								<li></li>
+								<li></li>
+							</ul>
+							<ul class='book_spine'>
+								<li></li>
+								<li></li>
+							</ul>
+							<figcaption>
+								<h4>{{p.title}}</h4>
+								<span style="padding-top:30px;"></span>
+								<h4>{{p.author}}</h4>
+							</figcaption>
+						</figure>
+					</li>
+				</ul>	
+			</div>
+		</div>
+	</div>
+	<script>
+	var app = angular.module('myApp',[]);
+		app.controller('myCtrl',function($scope,$http,$sce){
+			$http.get("../server.php/hillwater_all_get")
+				.success(function (response){
+					$scope.arr = [];
+		
+					if(response.status === 0){
+						angular.forEach(response.data,function(data){
+							$scope.arr.push(data)
+						});
+					}
+					console.log($scope.arr);
+				})
+
+		});
+	</script>
+</body>
+</html>

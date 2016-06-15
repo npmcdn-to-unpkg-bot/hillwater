@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>basic</title>
+
+
+<style>
+	.item{
+		max-width:500px;
+	}
+</style>
+</head>
+<body>
+
+  <h1>basic</h1>
+<button type="button" id="button">BUTTON</button>
+  <div id="basic" class="container">
+   <div class="grid-sizer"></div>
+      <div class="grid-image-item">
+        <img class="item" src="./../ls/ls1.png">
+      </div>
+      <div class="grid-image-item">
+       <img class="item" src="./../ls/ls2.png">
+      </div>
+      <div class="grid-image-item">
+        <img class="item" src="./../ls/ls3.png">
+      </div>
+      <div class="grid-image-item">
+       <img class="item" src="./../ls/ls4.png">
+      </div>
+      <div class="grid-image-item">
+        <img class="item" src="./../ls/ls5.png">
+      </div>
+      <div class="grid-image-item">
+        <img class="item" src="./../ls/ls6.png">
+      </div>
+  </div>
+
+<script src="../../dist/js/jquery.js"></script>
+<script type="text/javascript" src="./masonry.pkgd.js"></script>
+
+
+<script>
+var container = document.querySelector('#basic');
+var msnry = new Masonry( container, {
+  columnWidth: 30
+});
+$("#button").click(function(){
+	var container = document.querySelector('#basic');
+var msnry = new Masonry( container, {
+  columnWidth: 0
+});
+})
+</script>
+</body>
+</html>

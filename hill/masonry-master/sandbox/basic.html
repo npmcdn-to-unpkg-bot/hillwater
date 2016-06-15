@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>basic</title>
+
+  <link rel="stylesheet" href="sandbox.css" />
+
+<style>
+	.item{
+		width:350px;
+		height:auto;
+		padding-top:20px;
+		position:absolute;
+	}
+</style>
+</head>
+<body>
+
+  <h1>basic</h1>
+
+  <div id="basic" class="">
+    <img class="item" src="./hhl/hhl1.png">
+    <img class="item" src="./hhl/hhl2.png">
+    <img class="item" src="./hhl/hhl3.png">
+    <img class="item" src="./hhl/hhl4.png">
+    <img class="item" src="./hhl/hhl5.png">
+    <img class="item" src="./hhl/hhl6.png">
+    <img class="item" src="./hhl/hhl7.png">
+    <img class="item" src="./hhl/hhl8.png">
+    <img class="item" src="./hhl/hhl9.png">
+  </div>
+
+<script src="../../../dist/js/jquery.js"></script>
+<script type="text/javascript" src="../dist/masonry.pkgd.js"></script>
+
+
+<script>
+
+
+$('#basic').masonry({
+  // set itemSelector so .grid-sizer is not used in layout
+  // use element for option
+  	columnWidth: 25,
+ 
+});
+</script>
+</body>
+</html>
